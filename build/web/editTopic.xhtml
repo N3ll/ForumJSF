@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        Edit the topic
+        
+        <h:form>
+              <!--            add log out-->
+            <h:commandButton value="Log Out" action="index"/>
+            Topic subject:
+            <h:outputText value="#{userBean.editedTopic.title}" style="width:200px"/><br />
+            
+            Message:<br />
+            <h:inputTextarea value="#{userBean.editedTopic.content}" style="width: 300px;height: 300px"/><br />
+            <h:commandButton value="Update" action="#{userBean.updateTopic()}"/>
+            <h:commandButton value="Delete" action="#{userBean.deleteTopic()}"/>
+<!--            go to profile-->
+            <h:commandButton value="Cancel" action="profile" immediate="true"/>
+            
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        Your current category is #{userBean.currentCategory.name} <br />
+        
+        <div class="leftSide">
+            
+<!--            small changes in Topics: and added button profile-->
+
+            
+            <h:form>
+                  <!--            add log out-->
+            <h:commandButton value="Log Out" action="index"/>
+                <p> <h:commandButton value="#{userBean.userProfile()}" action="profile"/></p>
+                Topics:
+                
+                 <h:dataTable border="0" value="#{userBean.currentCategory.messages}" var="messages">        
+                
+                    <h:column>
+                        <h:commandLink class="topics" value="#{messages.title}" action="#{userBean.changeTopic(messages.title)}" />
+                    </h:column>
+		     
+                 </h:dataTable>
+                <h:commandButton value="Back to the Categories" action="category"/>
+            </h:form>
+        </div>
+        
+        
+        <div class="rightSide">
+            
+            Your current topic is : #{userBean.currentTopic.title}
+            
+            <h:form style="float:right;margin-right:450px;">
+                <h:commandButton value="Add Topic" action="addTopic" />
+      
+            </h:form>
+            
+            <div style="width:400px">
+            <h:form>
+                <h:outputText value="#{userBean.currentTopic.content}" /> <br />
+                
+                <h3>Write a comment in the textbox below</h3>
+                <h:inputTextarea value="#{userBean.newComment}" style="width: 400px; height: 100px"/>
+                <h:commandButton value="Add comment" action="#{userBean.addComment(userBean.newComment)}" />
+                 
+            </h:form>
+                <div style="border-bottom: 1px solid black">
+                <h2 stye="">Comments:</h2>
+                </div>
+                
+                <h:dataTable border="0" value="#{userBean.currentTopic.comments}" var="comments">        
+                
+                    <h:column>
+                        <h:outputText style="color: blue" value="#{comments.creator.userName}" /><br/>   
+                        <h:outputText value="#{comments.content}" />   
+                    </h:column>
+		     
+                </h:dataTable>
+            </div>
+            
+        </div>
+        
+        
+    </h:body>
+</html>

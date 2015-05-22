@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+
+
+        <h:form>
+              <!--            add log out-->
+            <h:commandButton value="Log Out" action="index"/>
+            <!--            moved inside the form and add a delete button-->
+            <p>Welcome, #{userBean.user.userName}!</p>
+
+            <!--to read the name of the user you are about to change-->
+            <div> <h:outputText  value="#{userBean.userToEdit()}"/></div>
+
+            <!--           moved down-->
+            <p><h:commandButton rendered="#{userBean.canEditUser()}" value="Delete Profile" action="#{userBean.deleteUser()}"/></p>
+
+
+            <!--                all buttons are changed-->
+            <h:panelGrid  columns="3">
+                <h:commandButton  value="#{userBean.numberOfCategories()}" action="#{userBean.showCategories()}"/>
+                <h:commandButton  value="#{userBean.numberOfTopics()}" action="#{userBean.showTopics()}"/>
+                <h:commandButton  value="#{userBean.numberOfComments()}" action="#{userBean.showComments()}"/>
+            </h:panelGrid>
+
+
+            <h:dataTable  rendered="#{userBean.showCategories}" value="#{userBean.userCategories()}" var="category">        
+                <h:column>
+                    <h:commandLink  value="#{category.name}" action="#{userBean.selectCategory(category)}" />
+                </h:column>
+            </h:dataTable>
+            <!--            change the value of the button so it shows the topic with the category-->
+            <h:dataTable  rendered="#{userBean.showTopics}" value="#{userBean.userTopicsWithCategory()}" var="topic">        
+                <h:column>
+                    <h:commandLink  value="#{topic.label}" action="#{userBean.selectTopic(topic)}" />
+                </h:column>
+            </h:dataTable>
+            <!--            change the value of the button so it shows the comments with the topic and the category-->
+            <h:dataTable  rendered="#{userBean.showComments}" value="#{userBean.userCommentsWithTopic()}" var="comment">        
+                <h:column>
+                    <h:commandLink  value="#{comment.label}" action="#{userBean.selectComment(comment)}" />
+                    <!--                    for better readability-->
+                    <p> <h:outputText value="#{comment.content}"/></p>
+                </h:column>
+            </h:dataTable>
+
+            <p>Click in order to modify a user</p>
+            <!--            new dataTable for the users, so the admin can change them-->
+            <h:dataTable rendered="#{userBean.user.isAdmin}" value="#{userBean.users()}" var="us">
+                <h:column>
+                    <h:commandLink  value="#{us.userName}" action="#{userBean.selectUser(us)}" />
+                </h:column>
+            </h:dataTable>
+
+
+            <!--back button added-->
+            <h:commandButton value="Back to the Categories" action="category"/>
+        </h:form>
+    </h:body>
+</html>
+

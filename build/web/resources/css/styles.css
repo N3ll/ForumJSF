@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 21, 2014, 7:17:01 PM
+    Author     : RossWhyte
+*/
+
+body{
+    background-image: url("../resources/images/gradient.png");
+    background-repeat: repeat;  
+   
+}
+
+.categories {
+    text-decoration: none;
+    color: blueviolet;
+}
+
+.topics{
+    text-decoration: none;
+}
+
+.leftSide{
+    width:200px; 
+    float:left; 
+    border-right: 1px solid black
+}
+.rightSide{
+    padding-left: 250px
+}
+
+a:hover{
+    color:blue;
+    background-color: bisque;
+}

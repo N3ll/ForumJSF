@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Category</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+
+        Hello from Facelets <br />
+
+        <div class="leftSide"> 
+
+            Categories:
+
+
+            <h:form>
+                  <!--            add log out-->
+            <h:commandButton value="Log Out" action="index"/>
+                <!--                change in the button by adding the userName-->
+                <h:commandButton value="#{userBean.userProfile()}" action="profile"/>
+                <h:dataTable border="0" value="#{userBean.service.categories}" var="category">        
+
+                    <h:column>
+                        <h:commandLink class="categories" value="#{category.name}" action="#{userBean.changeCategory(category.name)}" />
+                    </h:column>
+
+                </h:dataTable>
+
+                <p>Or add a category:</p>
+                <h:inputText value="#{userBean.newCategoryName}" />
+                <h:commandButton value="Add category" action="#{userBean.addCategory}" />
+            </h:form>
+
+
+        </div>
+
+        <div class="rightSide">
+
+            Topics:
+
+            <h:form style="float:right;margin-right:450px;">
+                <h:commandButton value="Add Topic" action="addTopic" />
+
+            </h:form>
+
+            <h:form>
+                <h:dataTable border="0" value="#{userBean.currentCategory.messages}" var="messages">        
+
+                    <h:column>
+                        <h:commandLink class="topics" value="#{messages.title}" action="#{userBean.changeTopic(messages.title)}" />
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+
+        </div>
+
+
+
+
+    </h:body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Log in</title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h3>Please enter your name and password.</h3>   
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><h:inputText value="#{userBean.user.userName}" /></td>
+                </tr>
+                <tr>
+                    
+                    <td>Password:</td>
+
+                    <td><h:inputSecret value="#{userBean.user.password}">
+                            <f:validateLength minimum="5" maximum="5"/>
+                        </h:inputSecret>
+                    </td>
+                </tr>
+            </table>
+            <p><h:commandButton value="Login" action="#{userBean.login()}" style="border-radius: 50px; padding:5px"/>
+                <h:commandButton value="Register" action="register" immediate="true" style="padding:5px;border-radius: 30px;margin-left: 10px" /></p>
+        </h:form>
+    </h:body>
+</html>

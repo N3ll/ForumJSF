@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Register</title>
+         <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <f:event type="postValidate" listener="#{userBean.user.validatePass}"/>
+            <h3>Please fill out a new registration form</h3>   
+            <table>
+                <tr>
+                    <td>Name:</td>
+<!--                    required attribute added-->
+                    <td><h:inputText  required="true" value="#{userBean.user.userName}" /></td>
+                </tr>
+                <tr>
+
+                    <td>Password:</td>
+                    <td><h:inputSecret id="pass" value="#{userBean.user.password}">
+                        </h:inputSecret>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Retype password:</td>
+                    <td><h:inputSecret id="confirmPass" value="#{userBean.user.confirmPassword}" >
+                        </h:inputSecret>
+                    </td>
+                </tr>
+            </table>
+            <p><h:commandButton value="Register" action="#{userBean.createUser()}"/></p>
+        </h:form>
+    </h:body>
+</html>
+
